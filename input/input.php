@@ -26,17 +26,16 @@ $sql = "INSERT INTO data_kecamatan (kecamatan, longitude, latitude, luas, jumlah
 
 // Menyimpan data dan memeriksa apakah berhasil
 if ($conn->query($sql) === TRUE) {
-    $message = "Rekord berhasil disimpan.";
+    // Redirect ke halaman utama dengan pesan sukses
+    header("Location: ../leafletjs.php?status=addsuccess");
+    exit;
 } else {
-    $message = "Error: " . $sql . "<br>" . $conn->error;
+    // Redirect dengan pesan error
+    header("Location: ../leafletjs.php?status=adderror");
+    exit;
 }
 
 // Menutup koneksi
 $conn->close();
 
-// Redirect ke halaman utama
-header("Location: ../index.php");
-exit;
-
 ?>
-
